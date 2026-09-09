@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #007A3D 0%, #FFCE00 50%, #D21034 100%); /* Cores de Moçambique */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.caixa {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  width: 100%;
+  max-width: 500px; /* Caixa maior */
+  text-align: center;
+}
+
+h1 {
+  color: #007A3D;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+p {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* AQUI QUE FICA GRANDE E BONITO */
+#linkInput {
+  width: 100%;
+  padding: 18px 20px; /* BEM GRANDE */
+  font-size: 18px; /* Letra grande */
+  border: 3px solid #007A3D;
+  border-radius: 12px;
+  outline: none;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+#linkInput:focus {
+  border-color: #FFCE00;
+  box-shadow: 0 0 10px rgba(255, 206, 0, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 18px; /* Botão grande também */
+  font-size: 20px;
+  font-weight: bold;
+  background: #007A3D;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #005a2d;
+  transform: scale(1.02);
+}
+
+#resultado {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* CORES DO RESULTADO */
+.verde {
+  background: #d4edda;
+  color: #155724;
+  border: 2px solid #28a745;
+}
+
+.vermelho {
+  background: #f8d7da;
+  color: #721c24;
+  border: 2px solid #dc3545;
+}
+
+.amarelo {
+  background: #fff3cd;
+  color: #856404;
+  border: 2px solid #ffc107;
+}
