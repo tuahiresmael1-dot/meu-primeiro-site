@@ -2,90 +2,97 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detector de links Tuahir</title>
+    <title>Detector de Links Tuahir</title>
     
+    <!-- CSS -->
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+        body { 
+            background: #0f172a; 
+            color: white; 
+            text-align: center; 
+            padding: 50px; 
+            font-family: Arial, sans-serif;
         }
-        .caixa {
-            background: #1e293b;
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border: 1px solid #334155;
+        h1 { color: #22c55e; }
+        input { 
+            padding: 12px; 
+            width: 350px; 
+            border-radius: 8px; 
+            border: none; 
+            font-size: 16px;
         }
-        h1 { color: #22c55e; margin-bottom: 10px; font-size: 28px; }
-        p { color: #cbd5e1; margin-bottom: 20px; }
-        input {
-            width: 100%; padding: 14px; margin: 15px 0;
-            border: 2px solid #334155; border-radius: 10px;
-            background: #0f172a; color: white; font-size: 16px; outline: none;
-        }
-        input:focus { border-color: #22c55e; }
-        button {
-            background: #22c55e; color: white; border: none;
-            padding: 14px 25px; border-radius: 10px; cursor: pointer;
-            font-weight: bold; font-size: 16px; width: 100%; transition: 0.3s;
+        button { 
+            padding: 12px 20px; 
+            background: #22c55e; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px;
+            margin-left: 10px;
         }
         button:hover { background: #16a34a; }
-        #resultado { margin-top: 20px; font-weight: bold; font-size: 18px; min-height: 30px; }
     </style>
 
-    <!-- CODIGO DO ADSENSE COM TEU ID -->
+    <!-- CODIGO DO ADSENSE -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3911893827916159" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="caixa">
-        <h1>Detector de links Tuahir</h1>
-        <p>Cola o seu link para verificar se é seguro</p>
-        
-        <input type="text" id="linkInput" placeholder="Ex: https://whatsapp.com">
-        <button onclick="analisarLinks()">Verificar Link</button>
-        
-        <div id="resultado"></div>
-    </div>
 
+    <h1>🔍 Detector de Links Tuahir</h1>
+    <p>Cole qualquer link e verifique se é seguro</p>
+    
+    <!-- HTML: CAMPO E BOTÃO -->
+    <input type="text" id="linkInput" placeholder="Ex: www.google.com ou link.com">
+    <button onclick="analisarLinks()">Verificar Link</button>
+    
+    <div id="resultado"></div>
+
+    <!-- JAVASCRIPT: COLE AQUI -->
     <script>
-        function analisarLinks() {
-            const link = document.getElementById('linkInput').value.trim();
-            const resultado = document.getElementById('resultado');
-            
-            if(link === "") {
-                resultado.innerHTML = "⚠️ Cola um link primeiro!";
-                resultado.style.color = "orange";
-                return;
-            }
+    function analisarLinks() {
+        let urlInput = document.getElementById("linkInput").value.trim();
+        const resultadoDiv = document.getElementById("resultado");
 
-            if(!link.startsWith("http")) {
-                resultado.innerHTML = "🚨 Link inválido. Use https://";
-                resultado.style.color = "#ef4444";
-                return;
-            }
-
-            const suspeitas = ["login", "senha", "banco", "premio", "gratis", "pix", "verificar", "urgente"];
-            let suspeito = suspeitas.some(p => link.toLowerCase().includes(p));
-
-            if(suspeito) {
-                resultado.innerHTML = "🚨 Cuidado! Link suspeito de phishing.";
-                resultado.style.color = "#ef4444";
-            } else {
-                resultado.innerHTML = "✅ Link parece seguro.";
-                resultado.style.color = "#22c55e";
-            }
+        if (urlInput === "") {
+            resultadoDiv.innerHTML = "<p style='color: #ffa500; font-weight:bold;'>⚠️ Por favor, insira um link para verificar.</p>";
+            return;
         }
+
+        // NOVO: Se não tiver http, adiciona https:// sozinho
+        // Agora aceita: google.com, www.google.com, link.com
+        if (!urlInput.startsWith("http://") && !urlInput.startsWith("https://")) {
+            urlInput = "https://" + urlInput;
+        }
+
+        // Lista de termos suspeitos
+        const termosPerigosos = [
+            "ganhar-dinheiro", "premio", "sorteio", "gratis", "vaga-urgente", 
+            "atualizar-senha", "free-robux", "bit.ly", "promocao", "login", 
+            "verificar", "senha", "banco", "pix", "urgente", "conta", "recuperar"
+        ];
+
+        // Verifica se tem termo suspeito
+        const éPerigoso = termosPerigosos.some(termo => urlInput.toLowerCase().includes(termo));
+
+        // Mostra resultado
+        if (éPerigoso) {
+            resultadoDiv.innerHTML = `
+                <div style="background-color: #ffdddd; color: #d8000c; padding: 15px; border-radius: 10px; margin-top: 20px; font-weight: bold; border: 2px solid #d8000c;">
+                    ⚠️ LINK PERIGOSO DETECTADO!<br>
+                    <span style="font-size: 14px; font-weight: normal;">Este link contém padrões comuns de golpes. Não clique!</span>
+                </div>
+            `;
+        } else {
+            resultadoDiv.innerHTML = `
+                <div style="background-color: #ddffdd; color: #4f8a10; padding: 15px; border-radius: 10px; margin-top: 20px; font-weight: bold; border: 2px solid #4f8a10;">
+                    ✅ LINK SEGURO!<br>
+                    <span style="font-size: 14px; font-weight: normal;">Nenhuma ameaça óbvia foi encontrada em: ${urlInput}</span>
+                </div>
+            `;
+        }
+    }
     </script>
+
 </body>
 </html>
