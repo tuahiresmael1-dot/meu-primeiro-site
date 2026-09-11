@@ -133,7 +133,7 @@
         </footer>
     </div>
 
-    <!-- JAVASCRIPT ATUALIZADO COM PALAVRAS DE MZ -->
+    <!-- JAVASCRIPT CORRIGIDO COM LISTA DE SITES SEGUROS -->
     <script>
     function analisarLinks() {
         let urlInput = document.getElementById("linkInput").value.trim();
@@ -144,25 +144,41 @@
             return;
         }
 
-        // Adiciona https:// se não tiver
         if (!urlInput.startsWith("http://") && !urlInput.startsWith("https://")) {
             urlInput = "https://" + urlInput;
         }
 
-        // LISTA ATUALIZADA COM PALAVRAS DE MOÇAMBIQUE
-        const termosPerigosos = [
-            // Golpes gerais
-            "ganhar-dinheiro", "premio", "sorteio", "gratis", "vaga-urgente", 
-            "atualizar-senha", "free-robux", "bit.ly", "promocao", "login", 
-            "verificar", "senha", "banco", "pix", "urgente", "conta", "recuperar",
+        const urlLower = urlInput.toLowerCase();
 
-            // Golpes específicos de MZ
-            "mpesa", "m-pesa", "vodacom", "movitel", "e-mola", "millennium", 
-            "bim", "bci", "standard-bank", "ganhar-iphone", "ganhar-moto", 
-            "ajuda-financeira", "doacao", "ganhador", "parabens-voce-ganhou"
+        // 1. PRIMEIRO: LISTA DE SITES OFICIAIS SEGUROS
+        const sitesSeguros = [
+            "m-pesa.co.mz", "mpesa.co.mz", "vodacom.co.mz", 
+            "movitel.co.mz", "e-mola.co.mz", "bim.co.mz", 
+            "bci.co.mz", "millenniumbim.co.mz", "google.com", 
+            "facebook.com", "youtube.com", "wikipedia.org"
         ];
 
-        const éPerigoso = termosPerigosos.some(termo => urlInput.toLowerCase().includes(termo));
+        // Se for site oficial, já libera
+        const éSiteSeguro = sitesSeguros.some(site => urlLower.includes(site));
+        if (éSiteSeguro) {
+            resultadoDiv.innerHTML = `
+                <div class="resultado-box seguro">
+                    ✅ SITE OFICIAL SEGURO!<br>
+                    <span style="font-size: 14px; font-weight: 400;">Este é o site oficial. Pode confiar.</span>
+                </div>
+            `;
+            return; // Para aqui e não verifica o resto
+        }
+
+        // 2. SEGUNDO: LISTA DE PALAVRAS PERIGOSAS
+        const termosPerigosos = [
+            "ganhar-dinheiro", "premio", "sorteio", "gratis", "vaga-urgente", 
+            "atualizar-senha", "bit.ly", "login", "verificar", "senha", 
+            "banco", "pix", "urgente", "conta", "mpesa", "m-pesa", "vodacom", 
+            "e-mola", "ganhar-iphone", "ajuda-financeira", "doacao", "ganhador"
+        ];
+
+        const éPerigoso = termosPerigosos.some(termo => urlLower.includes(termo));
 
         if (éPerigoso) {
             resultadoDiv.innerHTML = `
