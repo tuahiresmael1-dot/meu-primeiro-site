@@ -10,20 +10,20 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; font-family: 'Poppins', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
-       .container { max-width: 700px; width: 100%; text-align: center; }
+      .container { max-width: 700px; width: 100%; text-align: center; }
         h1 { font-size: 2.5rem; font-weight: 700; color: #22c55e; margin-bottom: 10px; }
-       .subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 40px; }
-       .box { background: #1e293b; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #334155; }
-       .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+      .subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 40px; }
+      .box { background: #1e293b; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #334155; }
+      .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
         input { flex: 1; padding: 18px 20px; border-radius: 12px; border: 2px solid #334155; background: #0f172a; color: white; font-size: 1rem; outline: none; transition: 0.3s; }
         input:focus { border-color: #22c55e; }
         button { padding: 18px 30px; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: 0.3s; }
         button:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(34,197,94,0.4); }
-       .resultado-box { padding: 20px; border-radius: 12px; margin-top: 20px; font-weight: 600; font-size: 1.1rem; animation: fadeIn 0.3s; }
+      .resultado-box { padding: 20px; border-radius: 12px; margin-top: 20px; font-weight: 600; font-size: 1.1rem; animation: fadeIn 0.3s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-       .seguro { background: #dcfce7; color: #166534; border: 2px solid #22c55e; }
-       .perigoso { background: #fee2e2; color: #991b1b; border: 2px solid #ef4444; }
-       .aviso { background: #ffedd5; color: #9a3412; border: 2px solid #f97316; }
+      .seguro { background: #dcfce7; color: #166534; border: 2px solid #22c55e; }
+      .perigoso { background: #fee2e2; color: #991b1b; border: 2px solid #ef4444; }
+      .aviso { background: #ffedd5; color: #9a3412; border: 2px solid #f97316; }
         footer { margin-top: 50px; color: #64748b; font-size: 0.9rem; }
         @media (max-width: 600px) { h1 { font-size: 1.8rem; }.box { padding: 25px; }.input-group { flex-direction: column; } button { width: 100%; } }
     </style>
@@ -70,7 +70,7 @@
             hostname = urlInput.toLowerCase().replace("https://", "").replace("http://", "").replace("www.", "").split("/")[0];
         }
 
-        // 1. SITES OFICIAIS EXATOS
+        // 1. SITES OFICIAIS EXATOS - SÓ ESSES SÃO SEGUROS
         const sitesSeguros = [
             "m-pesa.co.mz", "mpesa.co.mz", "vodacom.co.mz", "movitel.co.mz", "e-mola.co.mz",
             "bim.co.mz", "bci.co.mz", "millenniumbim.co.mz", "google.com", "facebook.com",
@@ -79,27 +79,27 @@
         ];
 
         if(sitesSeguros.includes(hostname)){
-            resultadoDiv.innerHTML = `<div class="resultado-box seguro">✅ SITE OFICIAL SEGURO!<br><span style="font-size: 14px; font-weight: 400;">Este é o site oficial. Pode confiar.</span></div>`;
+            resultadoDiv.innerHTML = `<div class="resultado-box seguro">✅ SITE OFICIAL SEGURO!<br><span style="font-size: 14px; font-weight: 400;">Domínio oficial: ${hostname}</span></div>`;
             return;
         }
 
-        // 2. DETECÇÃO INTELIGENTE DE IMITAÇÃO - PEGA TIKTOOKO, GOOGLLE, ETC
+        // 2. DETECÇÃO AGRESSIVA DE IMITAÇÃO - PEGA TIKTOOKO, GOOGLLE, ETC
         const marcasParaBloquear = {
-            "tiktok": ["tiktook", "tok"],
+            "tiktok": ["tikt", "ok"], // PEGA tiktooko, tiktook, tiktoke
             "google": ["googl", "gle"],
             "facebook": ["faceb", "book"],
-            "whatsapp": ["whats", "sapp"],
+            "whatsapp": ["whats", "app"],
             "instagram": ["insta", "gram"],
-            "m-pesa": ["m-pes", "mpesa"],
-            "vodacom": ["vodac", "com"],
+            "m-pesa": ["m-pes", "esa"],
+            "vodacom": ["vodac", "om"],
             "bci": ["bci"],
             "bim": ["bim"]
         };
 
         for(let marca in marcasParaBloquear){
             const partes = marcasParaBloquear[marca];
-            // Se o domínio tiver 2 partes da marca juntas = é golpe
-            if(partes.every(parte => hostname.includes(parte))){
+            // Se tiver QUALQUER parte da marca = já é suspeito
+            if(partes.some(parte => hostname.includes(parte))){
                 resultadoDiv.innerHTML = `
                     <div class="resultado-box perigoso">
                         ⚠️ GOLPE DETECTADO!<br>
@@ -114,12 +114,12 @@
         const termosPerigosos = ["premio", "sorteio", "gratis", "ganhar", "urgente", "senha", "login", "verificar", "banco", "pix", "conta", "bit.ly"];
 
         if(termosPerigosos.some(termo => hostname.includes(termo))){
-            resultadoDiv.innerHTML = `<div class="resultado-box perigoso">⚠️ LINK PERIGOSO DETECTADO!<br><span style="font-size: 14px; font-weight: 400;">Este link contém padrões comuns de golpes. Não clique!</span></div>`;
+            resultadoDiv.innerHTML = `<div class="resultado-box perigoso">⚠️ LINK PERIGOSO DETECTADO!<br><span style="font-size: 14px; font-weight: 400;">Contém palavras comuns de golpes.</span></div>`;
             return;
         }
 
-        // 4. SE PASSOU EM TUDO
-        resultadoDiv.innerHTML = `<div class="resultado-box seguro">✅ LINK SEGURO!<br><span style="font-size: 14px; font-weight: 400;">Nenhuma ameaça foi encontrada.</span></div>`;
+        // 4. SE NÃO É OFICIAL E NEM TEM PALAVRA PERIGOSA = DESCONHECIDO
+        resultadoDiv.innerHTML = `<div class="resultado-box perigoso">⚠️ LINK DESCONHECIDO!<br><span style="font-size: 14px; font-weight: 400;">Não está na lista de sites oficiais. Tenha cuidado!</span></div>`;
     }
     </script>
 
