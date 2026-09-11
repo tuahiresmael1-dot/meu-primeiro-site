@@ -145,28 +145,7 @@
 
         const urlLower = urlInput.toLowerCase();
 
-        // 1. DETECTAR DOMÍNIOS FALSOS - PHISHING
-        const dominiosFalsos = [
-            "gooogle.com", "goggle.com", "faceboook.com", "faacebook.com",
-            "youtubee.com", "youutube.com", "tiktokko.com", "ttiktok.com", 
-            "tiiktok.com", "instagraam.com", "whattsapp.com", "whatsappp.com",
-            "m-pesaa.co.mz", "mpesaa.co.mz", "vodacoom.co.mz", "vodacom.co.moz",
-            "e-mollaa.co.mz", "emolaa.co.mz", "biim.co.mz", "bciii.co.mz",
-            "twitterr.com", "linkedinn.com"
-        ];
-
-        const éDominioFalso = dominiosFalsos.some(site => urlLower.includes(site));
-        if (éDominioFalso) {
-            resultadoDiv.innerHTML = `
-                <div class="resultado-box perigoso">
-                    ⚠️ GOLPE DETECTADO!<br>
-                    <span style="font-size: 14px; font-weight: 400;">Este site tenta imitar um site oficial. Não clique!</span>
-                </div>
-            `;
-            return;
-        }
-
-        // 2. LISTA DE SITES OFICIAIS SEGUROS
+        // 1. LISTA DE SITES OFICIAIS SEGUROS - EXATOS
         const sitesSeguros = [
             "m-pesa.co.mz", "mpesa.co.mz", "vodacom.co.mz", 
             "movitel.co.mz", "e-mola.co.mz", "bim.co.mz", 
@@ -176,7 +155,14 @@
             "linkedin.com", "wikipedia.org"
         ];
 
-        const éSiteSeguro = sitesSeguros.some(site => urlLower.includes(site));
+        // Verifica se é EXATAMENTE o site oficial
+        const éSiteSeguro = sitesSeguros.some(site => {
+            try {
+                const url = new URL(urlInput);
+                return url.hostname === site || url.hostname === "www." + site;
+            } catch { return false; }
+        });
+
         if (éSiteSeguro) {
             resultadoDiv.innerHTML = `
                 <div class="resultado-box seguro">
@@ -187,14 +173,27 @@
             return;
         }
 
+        // 2. DETECTAR IMITAÇÃO DE MARCAS FAMOSAS
+        const marcas = ["tiktok", "google", "facebook", "whatsapp", "instagram", "m-pesa", "mpesa", "vodacom", "bci", "bim", "e-mola"];
+        
+        for(let marca of marcas){
+            if(urlLower.includes(marca)){
+                resultadoDiv.innerHTML = `
+                    <div class="resultado-box perigoso">
+                        ⚠️ GOLPE DETECTADO!<br>
+                        <span style="font-size: 14px; font-weight: 400;">Este site tenta imitar o ${marca.toUpperCase()}. Não clique!</span>
+                    </div>
+                `;
+                return;
+            }
+        }
+
         // 3. LISTA DE PALAVRAS PERIGOSAS
         const termosPerigosos = [
             "ganhar-dinheiro", "premio", "sorteio", "gratis", "vaga-urgente", 
             "atualizar-senha", "bit.ly", "login", "verificar", "senha", 
             "banco", "pix", "urgente", "conta", "recuperar", "ganhador",
-            "mpesa", "m-pesa", "vodacom", "e-mola", "tiktok", "facebook",
-            "whatsapp", "instagram", "ganhar-iphone", "ganhar-moto",
-            "ajuda-financeira", "doacao", "parabens"
+            "ganhar-iphone", "ganhar-moto", "ajuda-financeira", "doacao", "parabens"
         ];
 
         const éPerigoso = termosPerigosos.some(termo => urlLower.includes(termo));
