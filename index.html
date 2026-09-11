@@ -133,7 +133,7 @@
         </footer>
     </div>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT ATUALIZADO COM PALAVRAS DE MZ -->
     <script>
     function analisarLinks() {
         let urlInput = document.getElementById("linkInput").value.trim();
@@ -144,14 +144,22 @@
             return;
         }
 
+        // Adiciona https:// se não tiver
         if (!urlInput.startsWith("http://") && !urlInput.startsWith("https://")) {
             urlInput = "https://" + urlInput;
         }
 
+        // LISTA ATUALIZADA COM PALAVRAS DE MOÇAMBIQUE
         const termosPerigosos = [
+            // Golpes gerais
             "ganhar-dinheiro", "premio", "sorteio", "gratis", "vaga-urgente", 
             "atualizar-senha", "free-robux", "bit.ly", "promocao", "login", 
-            "verificar", "senha", "banco", "pix", "urgente", "conta"
+            "verificar", "senha", "banco", "pix", "urgente", "conta", "recuperar",
+
+            // Golpes específicos de MZ
+            "mpesa", "m-pesa", "vodacom", "movitel", "e-mola", "millennium", 
+            "bim", "bci", "standard-bank", "ganhar-iphone", "ganhar-moto", 
+            "ajuda-financeira", "doacao", "ganhador", "parabens-voce-ganhou"
         ];
 
         const éPerigoso = termosPerigosos.some(termo => urlInput.toLowerCase().includes(termo));
