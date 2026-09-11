@@ -1,23 +1,99 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detector de links Tuahir</title>
-    <link rel="stylesheet" href="style.css">
-    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
+    
+    <!-- CSS JÁ DENTRO -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .caixa {
+            background: #1e293b;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 1px solid #334155;
+        }
+        h1 { color: #22c55e; margin-bottom: 10px; font-size: 28px; }
+        p { color: #cbd5e1; margin-bottom: 20px; }
+        input {
+            width: 100%; padding: 14px; margin: 15px 0;
+            border: 2px solid #334155; border-radius: 10px;
+            background: #0f172a; color: white; font-size: 16px; outline: none;
+        }
+        input:focus { border-color: #22c55e; }
+        button {
+            background: #22c55e; color: white; border: none;
+            padding: 14px 25px; border-radius: 10px; cursor: pointer;
+            font-weight: bold; font-size: 16px; width: 100%; transition: 0.3s;
+        }
+        button:hover { background: #16a34a; transform: translateY(-2px); }
+        #resultado { margin-top: 20px; font-weight: bold; font-size: 18px; min-height: 30px; }
+    </style>
+
+    <!-- CÓDIGO CORRETO DO ADSENSE -->
+    <!-- TROCA ca-pub-SEU_ID_AQUI PELO TEU ID REAL -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-SEU_ID_AQUI" crossorigin="anonymous"></script>
 </head>
 <body>
+
     <div class="caixa">
         <h1>Detector de links Tuahir</h1>
         <p>Cola o seu link para tuahir verificar se é seguro</p>
         
-        <input type="text" id="linkInput" placeholder="Ex: //whatsapp.com">
-        <button onclick="analiserLinks()">Verificar Link</button>
+        <input type="text" id="linkInput" placeholder="Ex: https://whatsapp.com">
+        <button onclick="analisarLinks()">Verificar Link</button>
         
         <div id="resultado"></div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- JAVASCRIPT JÁ DENTRO -->
+    <script>
+        function analisarLinks() {
+            const link = document.getElementById('linkInput').value.trim();
+            const resultado = document.getElementById('resultado');
+            
+            if(link === "") {
+                resultado.innerHTML = "⚠️ Cola um link primeiro!";
+                resultado.style.color = "orange";
+                return;
+            }
+
+            if(!link.startsWith("http://") && !link.startsWith("https://")) {
+                resultado.innerHTML = "🚨 Link inválido. Use https://";
+                resultado.style.color = "#ef4444";
+                return;
+            }
+
+            const palavrasSuspeitas = [
+                "login", "verificar", "senha", "banco", "premio", "gratis", 
+                "pix", "recuperar", "atualizar", "conta", "seguranca", "urgente"
+            ];
+            
+            let suspeito = palavrasSuspeitas.some(p => link.toLowerCase().includes(p));
+
+            if(suspeito) {
+                resultado.innerHTML = "🚨 Cuidado! Este link parece suspeito de phishing.";
+                resultado.style.color = "#ef4444";
+            } else {
+                resultado.innerHTML = "✅ Link parece seguro.";
+                resultado.style.color = "#22c55e";
+            }
+        }
+    </script>
 </body>
 </html>
