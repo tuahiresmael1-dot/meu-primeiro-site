@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detector de links Tuahir</title>
     
-    <!-- CSS JÁ DENTRO -->
+    <!-- CSS DENTRO -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0f172a, #1e293b);
             color: white;
             display: flex;
@@ -29,11 +29,12 @@
             border: 1px solid #334155;
         }
         h1 { color: #22c55e; margin-bottom: 10px; font-size: 28px; }
-        p { color: #cbd5e1; margin-bottom: 20px; }
+        p { color: #cbd5e1; margin-bottom: 20px; font-size: 15px; }
         input {
             width: 100%; padding: 14px; margin: 15px 0;
             border: 2px solid #334155; border-radius: 10px;
             background: #0f172a; color: white; font-size: 16px; outline: none;
+            transition: 0.3s;
         }
         input:focus { border-color: #22c55e; }
         button {
@@ -45,15 +46,14 @@
         #resultado { margin-top: 20px; font-weight: bold; font-size: 18px; min-height: 30px; }
     </style>
 
-    <!-- CÓDIGO CORRETO DO ADSENSE -->
-    <!-- TROCA ca-pub-SEU_ID_AQUI PELO TEU ID REAL -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-SEU_ID_AQUI" crossorigin="anonymous"></script>
+    <!-- ADSENSE CORRETO - TROCA O ID AQUI -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <div class="caixa">
         <h1>Detector de links Tuahir</h1>
-        <p>Cola o seu link para tuahir verificar se é seguro</p>
+        <p>Cola o seu link abaixo para verificar se é seguro</p>
         
         <input type="text" id="linkInput" placeholder="Ex: https://whatsapp.com">
         <button onclick="analisarLinks()">Verificar Link</button>
@@ -61,7 +61,7 @@
         <div id="resultado"></div>
     </div>
 
-    <!-- JAVASCRIPT JÁ DENTRO -->
+    <!-- JS DENTRO -->
     <script>
         function analisarLinks() {
             const link = document.getElementById('linkInput').value.trim();
@@ -81,7 +81,7 @@
 
             const palavrasSuspeitas = [
                 "login", "verificar", "senha", "banco", "premio", "gratis", 
-                "pix", "recuperar", "atualizar", "conta", "seguranca", "urgente"
+                "pix", "recuperar", "atualizar", "conta", "seguranca", "urgente", "ganhe"
             ];
             
             let suspeito = palavrasSuspeitas.some(p => link.toLowerCase().includes(p));
