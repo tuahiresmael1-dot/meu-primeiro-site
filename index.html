@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detector de Links Tuahir | Segurança Online</title>
     
-    <!-- FONTE PROFISSIONAL -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- CSS PROFISSIONAL -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -102,7 +100,6 @@
             font-size: 0.9rem;
         }
 
-        /* RESPONSIVO PRO CELULAR */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             .box { padding: 25px; }
@@ -111,7 +108,6 @@
         }
     </style>
 
-    <!-- ADSENSE -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3911893827916159" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -133,7 +129,6 @@
         </footer>
     </div>
 
-    <!-- JAVASCRIPT CORRIGIDO COM LISTA DE SITES SEGUROS -->
     <script>
     function analisarLinks() {
         let urlInput = document.getElementById("linkInput").value.trim();
@@ -150,15 +145,37 @@
 
         const urlLower = urlInput.toLowerCase();
 
-        // 1. PRIMEIRO: LISTA DE SITES OFICIAIS SEGUROS
+        // 1. DETECTAR DOMÍNIOS FALSOS - PHISHING
+        const dominiosFalsos = [
+            "gooogle.com", "goggle.com", "faceboook.com", "faacebook.com",
+            "youtubee.com", "youutube.com", "tiktokko.com", "ttiktok.com", 
+            "tiiktok.com", "instagraam.com", "whattsapp.com", "whatsappp.com",
+            "m-pesaa.co.mz", "mpesaa.co.mz", "vodacoom.co.mz", "vodacom.co.moz",
+            "e-mollaa.co.mz", "emolaa.co.mz", "biim.co.mz", "bciii.co.mz",
+            "twitterr.com", "linkedinn.com"
+        ];
+
+        const éDominioFalso = dominiosFalsos.some(site => urlLower.includes(site));
+        if (éDominioFalso) {
+            resultadoDiv.innerHTML = `
+                <div class="resultado-box perigoso">
+                    ⚠️ GOLPE DETECTADO!<br>
+                    <span style="font-size: 14px; font-weight: 400;">Este site tenta imitar um site oficial. Não clique!</span>
+                </div>
+            `;
+            return;
+        }
+
+        // 2. LISTA DE SITES OFICIAIS SEGUROS
         const sitesSeguros = [
             "m-pesa.co.mz", "mpesa.co.mz", "vodacom.co.mz", 
             "movitel.co.mz", "e-mola.co.mz", "bim.co.mz", 
             "bci.co.mz", "millenniumbim.co.mz", "google.com", 
-            "facebook.com", "youtube.com", "wikipedia.org"
+            "facebook.com", "whatsapp.com", "instagram.com",
+            "tiktok.com", "youtube.com", "twitter.com", "x.com",
+            "linkedin.com", "wikipedia.org"
         ];
 
-        // Se for site oficial, já libera
         const éSiteSeguro = sitesSeguros.some(site => urlLower.includes(site));
         if (éSiteSeguro) {
             resultadoDiv.innerHTML = `
@@ -167,15 +184,17 @@
                     <span style="font-size: 14px; font-weight: 400;">Este é o site oficial. Pode confiar.</span>
                 </div>
             `;
-            return; // Para aqui e não verifica o resto
+            return;
         }
 
-        // 2. SEGUNDO: LISTA DE PALAVRAS PERIGOSAS
+        // 3. LISTA DE PALAVRAS PERIGOSAS
         const termosPerigosos = [
             "ganhar-dinheiro", "premio", "sorteio", "gratis", "vaga-urgente", 
             "atualizar-senha", "bit.ly", "login", "verificar", "senha", 
-            "banco", "pix", "urgente", "conta", "mpesa", "m-pesa", "vodacom", 
-            "e-mola", "ganhar-iphone", "ajuda-financeira", "doacao", "ganhador"
+            "banco", "pix", "urgente", "conta", "recuperar", "ganhador",
+            "mpesa", "m-pesa", "vodacom", "e-mola", "tiktok", "facebook",
+            "whatsapp", "instagram", "ganhar-iphone", "ganhar-moto",
+            "ajuda-financeira", "doacao", "parabens"
         ];
 
         const éPerigoso = termosPerigosos.some(termo => urlLower.includes(termo));
