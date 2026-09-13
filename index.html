@@ -4,33 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detector de Links Tuahir | Segurança Online e Antiphishing</title>
+    <meta name="description" content="Verifique se um link é seguro antes de clicar. Ferramenta gratuita para detectar golpes, phishing e sites falsos como tiktooko, gooogle e mpesaa.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; font-family: 'Poppins', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
-    .container { max-width: 700px; width: 100%; text-align: center; }
+   .container { max-width: 750px; width: 100%; text-align: center; }
         h1 { font-size: 2.5rem; font-weight: 700; color: #22c55e; margin-bottom: 10px; }
-    .subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 40px; }
-    .box { background: #1e293b; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #334155; margin-bottom: 40px; }
-    .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+   .subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 40px; }
+   .box { background: #1e293b; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #334155; margin-bottom: 40px; }
+   .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
         input { flex: 1; padding: 18px 20px; border-radius: 12px; border: 2px solid #334155; background: #0f172a; color: white; font-size: 1rem; outline: none; transition: 0.3s; }
         input:focus { border-color: #22c55e; }
         button { padding: 18px 30px; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: 0.3s; }
         button:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(34,197,94,0.4); }
-    .resultado-box { padding: 20px; border-radius: 12px; margin-top: 20px; font-weight: 600; font-size: 1.1rem; animation: fadeIn 0.3s; }
+   .resultado-box { padding: 20px; border-radius: 12px; margin-top: 20px; font-weight: 600; font-size: 1.1rem; animation: fadeIn 0.3s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .seguro { background: #dcfce7; color: #166534; border: 2px solid #22c55e; }
-    .perigoso { background: #fee2e2; color: #991b1b; border: 2px solid #ef4444; }
-    .aviso { background: #ffedd5; color: #9a3412; border: 2px solid #f97316; }
+   .seguro { background: #dcfce7; color: #166534; border: 2px solid #22c55e; }
+   .perigoso { background: #fee2e2; color: #991b1b; border: 2px solid #ef4444; }
+   .aviso { background: #ffedd5; color: #9a3412; border: 2px solid #f97316; }
 
-     /* ESTILO DO CONTEUDO PARA ADSENSE */
-    .conteudo-informativo { background: #1e293b; padding: 30px; border-radius: 20px; border: 1px solid #334155; text-align: left; line-height: 1.8; margin-top: 20px; }
-    .conteudo-informativo h2 { color: #22c55e; margin-top: 25px; margin-bottom: 15px; font-size: 1.5rem; }
-    .conteudo-informativo p,.conteudo-informativo li { color: #cbd5e1; margin-bottom: 15px; font-size: 1rem; }
-    .conteudo-informativo ul { padding-left: 20px; }
-    .conteudo-informativo strong { color: white; }
+    /* ESTILO DO CONTEUDO E POLITICA */
+   .conteudo-informativo { background: #1e293b; padding: 30px; border-radius: 20px; border: 1px solid #334155; text-align: left; line-height: 1.8; margin-top: 20px; }
+   .conteudo-informativo h2 { color: #22c55e; margin-top: 25px; margin-bottom: 15px; font-size: 1.5rem; }
+   .conteudo-informativo h3 { color: #22c55e; margin-top: 20px; margin-bottom: 10px; font-size: 1.2rem; }
+   .conteudo-informativo p,.conteudo-informativo li { color: #cbd5e1; margin-bottom: 15px; font-size: 1rem; }
+   .conteudo-informativo ul { padding-left: 20px; }
+   .conteudo-informativo strong { color: white; }
 
-        footer { margin-top: 50px; color: #64748b; font-size: 0.9rem; }
+        footer { margin-top: 50px; padding: 20px; border-top: 1px solid #334155; text-align: center; font-size: 0.9rem; color: #94a3b8; }
+        footer a { color: #22c55e; text-decoration: none; margin: 0 15px; }
+        footer a:hover { text-decoration: underline; }
         @media (max-width: 600px) { h1 { font-size: 1.8rem; }.box,.conteudo-informativo { padding: 25px; }.input-group { flex-direction: column; } button { width: 100%; } }
     </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3911893827916159" crossorigin="anonymous"></script>
@@ -67,7 +71,34 @@
             <p>Em Moçambique, os golpes mais comuns envolvem falsas promoções do M-Pesa, E-mola e bancos. Desconfie sempre e verifique antes de clicar.</p>
         </div>
 
-        <footer>Feito para sua segurança online © 2026</footer>
+        <!-- POLITICA DE PRIVACIDADE -->
+        <div id="privacidade" class="conteudo-informativo">
+            <h2>Política de Privacidade</h2>
+            <p>No <strong>Detector de Links Tuahir</strong>, a sua privacidade é muito importante para nós. Esta política explica como coletamos, usamos e protegemos as suas informações.</p>
+
+            <h3>1. Informações que Coletamos</h3>
+            <p>Não coletamos dados pessoais dos utilizadores. Quando você cola um link na nossa ferramenta, o endereço é analisado apenas no seu navegador e não é armazenado em nossos servidores.</p>
+
+            <h3>2. Cookies e Google AdSense</h3>
+            <p>Utilizamos cookies para melhorar a sua experiência e para exibir anúncios. O Google, como fornecedor de terceiros, utiliza cookies para exibir anúncios no nosso site. O Google utiliza o cookie DART para exibir anúncios com base nas visitas que o utilizador fez a outros sites na Internet. Os utilizadores podem desativar o cookie DART visitando a Política de privacidade da rede de conteúdo e dos anúncios do Google.</p>
+
+            <h3>3. Links Externos</h3>
+            <p>O nosso site pode conter links para sites externos. Não somos responsáveis pelas práticas de privacidade de outros sites. Recomendamos que leia as políticas de privacidade de cada site que visita.</p>
+
+            <h3>4. Alterações a Esta Política</h3>
+            <p>Podemos atualizar esta Política de Privacidade periodicamente. Recomendamos que reveja esta página regularmente para se manter informado sobre quaisquer alterações.</p>
+
+            <p style="margin-top:20px;"><strong>Última atualização:</strong> 13 de Setembro de 2026</p>
+        </div>
+
+        <!-- RODAPÉ COM LINKS OBRIGATÓRIOS PARA O ADSENSE -->
+        <footer>
+            <p>Feito para sua segurança online © 2026</p>
+            <p style="margin-top: 10px;">
+                <a href="#privacidade">Política de Privacidade</a> |
+                <a href="mailto:tuahiresmael1@gmail.com">Contacto</a>
+            </p>
+        </footer>
     </div>
 
     <script>
