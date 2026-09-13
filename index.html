@@ -3,39 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detector de Links Tuahir | Segurança Online</title>
-
+    <title>Detector de Links Tuahir | Segurança Online e Antiphishing</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; font-family: 'Poppins', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
-      .container { max-width: 700px; width: 100%; text-align: center; }
+    .container { max-width: 700px; width: 100%; text-align: center; }
         h1 { font-size: 2.5rem; font-weight: 700; color: #22c55e; margin-bottom: 10px; }
-      .subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 40px; }
-      .box { background: #1e293b; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #334155; }
-      .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+    .subtitle { font-size: 1.1rem; color: #94a3b8; margin-bottom: 40px; }
+    .box { background: #1e293b; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #334155; margin-bottom: 40px; }
+    .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
         input { flex: 1; padding: 18px 20px; border-radius: 12px; border: 2px solid #334155; background: #0f172a; color: white; font-size: 1rem; outline: none; transition: 0.3s; }
         input:focus { border-color: #22c55e; }
         button { padding: 18px 30px; background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: 0.3s; }
         button:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(34,197,94,0.4); }
-      .resultado-box { padding: 20px; border-radius: 12px; margin-top: 20px; font-weight: 600; font-size: 1.1rem; animation: fadeIn 0.3s; }
+    .resultado-box { padding: 20px; border-radius: 12px; margin-top: 20px; font-weight: 600; font-size: 1.1rem; animation: fadeIn 0.3s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-      .seguro { background: #dcfce7; color: #166534; border: 2px solid #22c55e; }
-      .perigoso { background: #fee2e2; color: #991b1b; border: 2px solid #ef4444; }
-      .aviso { background: #ffedd5; color: #9a3412; border: 2px solid #f97316; }
-        footer { margin-top: 50px; color: #64748b; font-size: 0.9rem; }
-        @media (max-width: 600px) { h1 { font-size: 1.8rem; }.box { padding: 25px; }.input-group { flex-direction: column; } button { width: 100%; } }
-    </style>
+    .seguro { background: #dcfce7; color: #166534; border: 2px solid #22c55e; }
+    .perigoso { background: #fee2e2; color: #991b1b; border: 2px solid #ef4444; }
+    .aviso { background: #ffedd5; color: #9a3412; border: 2px solid #f97316; }
 
+     /* ESTILO DO CONTEUDO PARA ADSENSE */
+    .conteudo-informativo { background: #1e293b; padding: 30px; border-radius: 20px; border: 1px solid #334155; text-align: left; line-height: 1.8; margin-top: 20px; }
+    .conteudo-informativo h2 { color: #22c55e; margin-top: 25px; margin-bottom: 15px; font-size: 1.5rem; }
+    .conteudo-informativo p,.conteudo-informativo li { color: #cbd5e1; margin-bottom: 15px; font-size: 1rem; }
+    .conteudo-informativo ul { padding-left: 20px; }
+    .conteudo-informativo strong { color: white; }
+
+        footer { margin-top: 50px; color: #64748b; font-size: 0.9rem; }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; }.box,.conteudo-informativo { padding: 25px; }.input-group { flex-direction: column; } button { width: 100%; } }
+    </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3911893827916159" crossorigin="anonymous"></script>
 </head>
 <body>
-
     <div class="container">
         <h1>🔍 Detector de Links Tuahir</h1>
         <p class="subtitle">Verifique se um link é seguro antes de clicar. Proteja-se contra golpes e phishing.</p>
 
+        <!-- CAIXA DO VERIFICADOR -->
         <div class="box">
             <div class="input-group">
                 <input type="text" id="linkInput" placeholder="Cole o link aqui: www.google.com">
@@ -44,9 +49,25 @@
             <div id="resultado"></div>
         </div>
 
-        <footer>
-            Feito para sua segurança online © 2026
-        </footer>
+        <!-- SECÇÃO DE CONTEÚDO PARA O GOOGLE ADSENSE -->
+        <div class="conteudo-informativo">
+            <h2>Como funciona o Detector de Links Tuahir?</h2>
+            <p>O <strong>Detector de Links Tuahir</strong> foi desenvolvido para analisar endereços de internet em tempo real e identificar potenciais ameaças cibernéticas. A nossa ferramenta verifica a estrutura do link à procura de padrões suspeitos comuns em fraudes virtuais, ajudando a garantir que a sua navegação seja totalmente segura antes mesmo de você clicar.</p>
+
+            <h2>O que é Phishing e como os links falsos funcionam?</h2>
+            <p>O <em>Phishing</em> é uma das técnicas de engenharia social mais utilizadas por cibercriminosos para roubar dados pessoais, palavras-passe e informações bancárias. Os atacantes criam páginas falsas que imitam perfeitamente redes sociais, bancos ou lojas virtuais conhecidas. Ao clicar em um link disfarçado, o utilizador é redirecionado para esses sites maliciosos, onde pode acabar instalando vírus (malware) ou entregando dados confidenciais sem perceber.</p>
+
+            <h2>Dicas essenciais para identificar um link perigoso:</h2>
+            <ul>
+                <li><strong>Verifique o domínio:</strong> Erros de ortografia propositados no nome do site (como <em>g00gle.com</em> em vez de <em>google.com</em>) são indícios claros de golpes.</li>
+                <li><strong>Atenção a encurtadores de links:</strong> Links muito curtos e genéricos ocultam o destino real do site. Sempre desconfie se não puder ler o endereço final.</li>
+                <li><strong>Promoções exageradas:</strong> Links que prometem prémios absurdos, dinheiro fácil ou promoções imperdíveis geralmente são iscas para roubo de dados.</li>
+                <li><strong>Use ferramentas de verificação:</strong> Antes de aceder a qualquer endereço suspeito recebido por mensagens ou redes sociais, utilize o nosso verificador para analisar o link com segurança.</li>
+            </ul>
+            <p>Em Moçambique, os golpes mais comuns envolvem falsas promoções do M-Pesa, E-mola e bancos. Desconfie sempre e verifique antes de clicar.</p>
+        </div>
+
+        <footer>Feito para sua segurança online © 2026</footer>
     </div>
 
     <script>
@@ -65,12 +86,12 @@
 
         let hostname = "";
         try {
-            hostname = new URL(urlInput).hostname.toLowerCase().replace("www.", "");
+            hostname = new URL(urlInput).hostname.toLowerCase();
         } catch {
-            hostname = urlInput.toLowerCase().replace("https://", "").replace("http://", "").replace("www.", "").split("/")[0];
+            hostname = urlInput.toLowerCase();
         }
+        hostname = hostname.replace("www.", "").replace("https://", "").replace("http://", "").split("/")[0];
 
-        // 1. SITES OFICIAIS EXATOS - SÓ ESSES SÃO SEGUROS
         const sitesSeguros = [
             "m-pesa.co.mz", "mpesa.co.mz", "vodacom.co.mz", "movitel.co.mz", "e-mola.co.mz",
             "bim.co.mz", "bci.co.mz", "millenniumbim.co.mz", "google.com", "facebook.com",
@@ -83,14 +104,13 @@
             return;
         }
 
-        // 2. DETECÇÃO AGRESSIVA DE IMITAÇÃO - PEGA TIKTOOKO, GOOGLLE, ETC
         const marcasParaBloquear = {
-            "tiktok": ["tikt", "ok"], // PEGA tiktooko, tiktook, tiktoke
+            "tiktok": ["tikt", "ok"],
             "google": ["googl", "gle"],
             "facebook": ["faceb", "book"],
             "whatsapp": ["whats", "app"],
             "instagram": ["insta", "gram"],
-            "m-pesa": ["m-pes", "esa"],
+            "m-pesa": ["m-pes", "esa", "mpesa"],
             "vodacom": ["vodac", "om"],
             "bci": ["bci"],
             "bim": ["bim"]
@@ -98,30 +118,20 @@
 
         for(let marca in marcasParaBloquear){
             const partes = marcasParaBloquear[marca];
-            // Se tiver QUALQUER parte da marca = já é suspeito
             if(partes.some(parte => hostname.includes(parte))){
-                resultadoDiv.innerHTML = `
-                    <div class="resultado-box perigoso">
-                        ⚠️ GOLPE DETECTADO!<br>
-                        <span style="font-size: 14px; font-weight: 400;">Este site tenta imitar o ${marca.toUpperCase()}. Domínio: ${hostname}</span>
-                    </div>
-                `;
+                resultadoDiv.innerHTML = `<div class="resultado-box perigoso">⚠️ GOLPE DETECTADO!<br><span style="font-size: 14px; font-weight: 400;">Este site tenta imitar o ${marca.toUpperCase()}. Domínio: ${hostname}</span></div>`;
                 return;
             }
         }
 
-        // 3. PALAVRAS PERIGOSAS
         const termosPerigosos = ["premio", "sorteio", "gratis", "ganhar", "urgente", "senha", "login", "verificar", "banco", "pix", "conta", "bit.ly"];
-
         if(termosPerigosos.some(termo => hostname.includes(termo))){
             resultadoDiv.innerHTML = `<div class="resultado-box perigoso">⚠️ LINK PERIGOSO DETECTADO!<br><span style="font-size: 14px; font-weight: 400;">Contém palavras comuns de golpes.</span></div>`;
             return;
         }
 
-        // 4. SE NÃO É OFICIAL E NEM TEM PALAVRA PERIGOSA = DESCONHECIDO
         resultadoDiv.innerHTML = `<div class="resultado-box perigoso">⚠️ LINK DESCONHECIDO!<br><span style="font-size: 14px; font-weight: 400;">Não está na lista de sites oficiais. Tenha cuidado!</span></div>`;
     }
     </script>
-
 </body>
 </html>
